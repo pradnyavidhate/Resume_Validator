@@ -1,0 +1,27 @@
+<div class="container mt-4">
+    <h3>File Upload with JDID</h3>
+    <label>JDID:</label>
+    <input type="file" (change)="onFileSelected($event)" multiple />
+    <button class="btn btn-primary mt-3" (click)="uploadFiles()" [disabled]="!files.length">
+      Upload
+    </button>
+  
+    <ul class="list-group mt-3">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+        *ngFor="let file of files"
+      >
+        {{ file.name }}
+        <span
+          *ngIf="file.status"
+          class="badge"
+          [ngClass]="{
+            'bg-success': file.status === 'Uploaded',
+            'bg-danger': file.status === 'Failed'
+          }">
+          {{ file.status }}
+        </span>
+      </li>
+    </ul>
+  </div>
+  
